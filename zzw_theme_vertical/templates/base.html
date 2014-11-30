@@ -1,0 +1,88 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+<head>
+    <meta charset="utf8"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}"/>
+    <meta name="description" content="{% block meta_description %}{% endblock %}"/>
+
+    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link href="{% static "img/favicon.ico" %}" rel="shortcut icon"/>
+
+    {% ifinstalled mezzanine.blog %}
+    <link href="{% url "blog_post_feed" "rss" %}" rel="alternate" type="application/rss+xml" title="RSS"/ >
+    <link href="{% url "blog_post_feed" "atom" %}" rel="alternate" type="application/atom+xml" title="Atom"/>
+    {% endifinstalled %}
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic|PT+Sans:700'
+          rel='stylesheet' type='text/css'>
+
+    {% compress css %}
+    <link href="{% static "bootstrap/dist/css/bootstrap.css" %}" rel="stylesheet"/>
+    <link href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" rel="stylesheet"/>
+    {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+    {% endif %}
+    {% ifinstalled cartridge.shop %}
+    <link href="{% static "css/cartridge.css" %}" rel="stylesheet"/>
+    {% if LANGUAGE_BIDI %}
+    <link href="{% static "css/cartridge.rtl.css" %}" rel="stylesheet"/>
+    {% endif %}
+    {% endifinstalled %}
+    {% block extra_css %}{% endblock %}
+    {% endcompress %}
+
+    {% compress js %}
+    <script src="{% static "jquery/dist/jquery.js" %}"></script>
+    <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/bootstrap-extras.js" %}"></script>
+    {% block extra_js %}{% endblock %}
+    {% endcompress %}
+
+    <!--[if lt IE 9]>
+    <script src="{% static "js/html5shiv.js" %}"></script>
+    <script src="{% static "js/respond.min.js" %}"></script>
+    <![endif]-->
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body id="{% block body_id %}body{% endblock %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                {% if settings.SITE_TITLE %}
+                <h1><a href="/">{{ settings.SITE_TITLE }}</a></h1>
+                {% endif %}
+                {% page_menu "pages/menus/left.html" %}
+            </div>
+            <div class="main-column col-sm-10">
+                {% nevercache %}
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="alert alert-dismissable alert-{{ message.tags }}"
+                         data-alert="alert">
+                        <button type="button" class="close"
+                                data-dismiss="alert" aria-hidden="true">
+                            &times;
+                        </button>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endnevercache %}
+
+                <h1>{% block title %}{% endblock %}</h1>
+
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    {% include "includes/footer_scripts.html" %}
+</body>
+</html>

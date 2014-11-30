@@ -1,0 +1,17 @@
+{
+  "name": "zzw_theme_vertical",
+  "version": "0.0.1",
+  "description": "ZZW vertical theme",
+  "main": "zzw_theme_vertical/templates/base.html",
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-less": "^1.3.6",
+    "main-bower-files": "^2.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@zzw.ca:wscales.com"
+  },
+  "author": "William Scales <william.scales@zzw.ca>",
+  "license": "Apache Software License"
+}
