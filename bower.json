@@ -24,7 +24,6 @@
               "less/!(variables).less",
               "less/!(navs).less",
               "less/!(type).less", 
-              "less/!(grid).less", 
               "less/mixins/*",
               "dist/css/bootstrap-theme.min.css",
               "dist/fonts/*",

@@ -11,11 +11,11 @@ gulp.task('mainBowerFiles', function() {
 
 gulp.task('bootstrap:prepareStaticFiles', function() {
     return gulp.src(mainBowerFiles(), {'base': 'bower_components'})
-        .pipe(gulp.dest('static'));
+        .pipe(gulp.dest('zzw_theme_vertical/static'));
 });
 
 gulp.task('bootstrap:prepareLess', ['mainBowerFiles'], function() {
-    return gulp.src('less/*.less')
+    return gulp.src('zzw_theme_vertical/less/*.less')
         .pipe(gulp.dest('gulp_build/bootstrap/less'));
 });
 
@@ -25,11 +25,11 @@ gulp.task('bootstrap:compileLess',
         return gulp.src('gulp_build/bootstrap/less/bootstrap.less')
             .pipe(less())
             .pipe(gulp.dest(
-                'static/bootstrap/dist/css'));
+                'zzw_theme_vertical/static/bootstrap/dist/css'));
     }
 );
 
 gulp.task('watch', function() {
-    gulp.watch('less/*.less',
+    gulp.watch('zzw_theme_vertical/less/*.less',
         ['bootstrap:compileLess']);
 });
