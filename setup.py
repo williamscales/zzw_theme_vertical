@@ -32,13 +32,13 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
-    package_name = 'zzw_projects'
+    package_name = 'zzw_theme_vertical'
     package_version = '0.1'
-    homepage_url = 'https://github.com/williamscales/zzw_projects'
+    homepage_url = 'https://github.com/williamscales/zzw_theme_vertical'
     package_author = 'William Scales'
     package_author_email = 'william@wscales.com'
     license = 'Apache Software License'
-    short_description = 'ZZW projects page type for Mezzanine'
+    short_description = 'ZZW vertical theme'
     long_description = read('README.rst')
     required = [
         'Django==1.7.1',
